@@ -4,7 +4,7 @@ Landing page for **Westminster Security** — a premium, full-spectrum security 
 
 Built with **React 19** + **Vite 8**. Single-page, no router, no backend.
 
-Live contact: WhatsApp **613-483-4356** → [wa.me/16134834356](https://wa.me/16134834356)
+Live contact: WhatsApp
 
 ---
 
