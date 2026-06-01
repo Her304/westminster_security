@@ -1,0 +1,775 @@
+.ws-site {
+  --max-w: 1280px;
+  --gutter: 70px;
+  --pad-x: max(var(--gutter), calc((100% - var(--max-w)) / 2));
+
+  width: 100%;
+  background: var(--paper);
+  color: var(--ink);
+  text-align: left;
+}
+
+/* ---------- Reveal / motion primitives ---------- */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.9s cubic-bezier(0.2, 0.7, 0.2, 1),
+    transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition-delay: var(--delay, 0ms);
+  will-change: opacity, transform;
+}
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+.ws-rise {
+  opacity: 0;
+  transform: translateY(18px);
+  animation: ws-rise-in 0.95s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+  animation-delay: var(--delay, 0ms);
+}
+@keyframes ws-rise-in {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal],
+  .ws-rise {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* ---------- Nav ---------- */
+.ws-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 26px var(--pad-x);
+  border-bottom: 1px solid var(--line);
+  position: sticky;
+  top: 0;
+  background: rgba(251, 251, 249, 0.92);
+  backdrop-filter: blur(8px);
+  z-index: 20;
+}
+.ws-wordmark {
+  font-family: var(--display);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  font-size: 22px;
+  line-height: 1;
+}
+.ws-wordmark span {
+  color: var(--accent);
+}
+.ws-navlinks {
+  display: flex;
+  gap: 28px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.ws-navlinks a {
+  text-decoration: none;
+  color: var(--ink-soft);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: color 0.15s ease;
+}
+.ws-navlinks a:hover {
+  color: var(--ink);
+}
+
+/* ---------- Shared type ---------- */
+.ws-eyebrow {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 18px;
+  color: var(--accent);
+  letter-spacing: 0.01em;
+  margin: 0 0 22px;
+}
+.ws-kicker {
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  font-weight: 600;
+  margin: 0 0 16px;
+}
+.ws-kicker--center {
+  text-align: center;
+  display: block;
+}
+.ws-headline {
+  font-family: var(--display);
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  font-size: clamp(36px, 7vw, 64px);
+  margin: 0;
+}
+.ws-headline--md {
+  font-size: clamp(26px, 4.6vw, 40px);
+  max-width: 760px;
+  margin: 0 auto;
+}
+.ws-headline--sm {
+  font-size: clamp(26px, 4.4vw, 38px);
+  color: #fff;
+  margin: 0;
+}
+.ws-lede {
+  color: var(--ink-soft);
+  font-size: 16px;
+  line-height: 1.6;
+  max-width: 480px;
+  margin: 30px auto 0;
+}
+.ws-lede--center {
+  margin: 28px auto 0;
+}
+
+/* ---------- Buttons ---------- */
+.ws-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1.5px solid var(--ink);
+  border-radius: 7px;
+  padding: 12px 20px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+  background: transparent;
+  text-decoration: none;
+  transition: background 0.15s ease, color 0.15s ease, transform 0.15s ease;
+}
+.ws-btn:hover {
+  background: var(--ink);
+  color: var(--paper);
+  transform: translateY(-1px);
+}
+.ws-btn--solid {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #1a1a1c;
+}
+.ws-btn--solid:hover {
+  background: #1a1a1c;
+  color: var(--accent);
+  border-color: #1a1a1c;
+}
+.ws-wa-icon {
+  width: 18px;
+  height: 18px;
+  display: inline-block;
+  flex-shrink: 0;
+}
+.ws-btn--solid:hover .ws-wa-icon {
+  filter: invert(1);
+}
+
+/* ---------- Hero ---------- */
+.ws-hero {
+  padding: 150px var(--pad-x) 130px;
+  text-align: center;
+}
+.ws-hero .ws-cta-row {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  margin-top: 40px;
+  flex-wrap: wrap;
+}
+
+/* ---------- Trust strip ---------- */
+.ws-trust {
+  padding: 22px var(--pad-x);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+}
+.ws-trust .ws-kicker {
+  margin: 0;
+}
+.ws-trust-marks {
+  display: flex;
+  gap: 34px;
+}
+.ws-trust-marks span {
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  font-weight: 600;
+}
+
+/* ---------- Services ---------- */
+.ws-services {
+  display: flex;
+  flex-direction: column;
+}
+.ws-service {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: stretch;
+  border-bottom: 1px solid var(--line);
+}
+.ws-service__copy {
+  padding: 80px 70px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+/* When the copy column sits on the LEFT of the row, push its left padding
+   in to match the 1280-centered content frame. */
+.ws-service:not(.ws-service--reverse) .ws-service__copy {
+  padding-left: var(--pad-x);
+}
+/* When the copy column sits on the RIGHT (reversed row), do the same on the right. */
+.ws-service--reverse .ws-service__copy {
+  padding-right: var(--pad-x);
+}
+.ws-service__copy h2 {
+  font-family: var(--display);
+  font-size: 36px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin: 0 0 18px;
+  color: var(--ink);
+  max-width: 520px;
+}
+.ws-service__copy p {
+  color: var(--ink-soft);
+  font-size: 15px;
+  line-height: 1.65;
+  margin: 0 0 28px;
+  max-width: 460px;
+}
+.ws-service__media {
+  position: relative;
+  min-height: 420px;
+  overflow: hidden;
+  background: #ededea;
+}
+.ws-service__media img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: saturate(0.95) contrast(1.02);
+  transition: transform 0.6s ease;
+}
+.ws-service__media:hover img {
+  transform: scale(1.03);
+}
+
+/* ---------- Why ---------- */
+.ws-why {
+  padding: 110px var(--pad-x);
+  text-align: center;
+  background: #f4f4f1;
+}
+
+.ws-why-pillars {
+  list-style: none;
+  padding: 0;
+  margin: 56px auto 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  max-width: 920px;
+  text-align: left;
+}
+.ws-why-pillars li {
+  padding: 22px 24px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.55);
+}
+.ws-why-pillars li .ws-kicker {
+  margin-bottom: 10px;
+}
+.ws-why-pillars li p {
+  font-family: var(--display);
+  font-size: 19px;
+  line-height: 1.35;
+  color: var(--ink);
+  margin: 0;
+}
+
+/* ---------- Testimonials ---------- */
+.ws-testimonials {
+  padding: 100px var(--pad-x);
+  text-align: center;
+}
+.ws-testimonials__title {
+  margin: 18px auto 14px;
+}
+.ws-testimonials__note {
+  color: var(--ink-soft);
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 16px;
+  max-width: 520px;
+  margin: 0 auto;
+}
+.ws-testimonials__list {
+  list-style: none;
+  padding: 0;
+  margin: 60px auto 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  max-width: 1100px;
+  text-align: left;
+}
+.ws-quote {
+  position: relative;
+  padding: 36px 28px 28px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.ws-quote:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 40px -22px rgba(28, 28, 30, 0.25);
+  border-color: var(--ink-faint);
+}
+.ws-quote__mark {
+  position: absolute;
+  top: 6px;
+  left: 18px;
+  font-family: var(--display);
+  font-size: 64px;
+  line-height: 1;
+  color: var(--accent);
+  opacity: 0.55;
+}
+.ws-quote__body {
+  font-family: var(--display);
+  font-size: 19px;
+  line-height: 1.45;
+  color: var(--ink);
+  margin: 0;
+}
+.ws-quote__attribution {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  border-top: 1px solid var(--line);
+  padding-top: 16px;
+}
+.ws-quote__author {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.ws-quote__role {
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+
+.ws-reserved {
+  display: none;
+}
+
+/* ---------- Contact ---------- */
+.ws-contact {
+  padding: 90px var(--pad-x) 100px;
+  background: #1a1a1c;
+  color: #e7e7e7;
+}
+.ws-contact__grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 60px;
+  align-items: center;
+}
+.ws-contact .ws-eyebrow {
+  margin-bottom: 18px;
+}
+.ws-contact__intro {
+  margin: 22px 0 0;
+  color: #bcbcc0;
+  font-size: 15px;
+  line-height: 1.6;
+  max-width: 420px;
+}
+.ws-contact__actions {
+  margin-top: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  align-items: flex-start;
+}
+.ws-contact__meta {
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px 32px;
+  font-size: 14px;
+}
+.ws-contact__meta div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.ws-contact__meta dt {
+  font-size: 10.5px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #8a8a8e;
+  font-weight: 600;
+}
+.ws-contact__meta dd {
+  margin: 0;
+  color: #e7e7e7;
+  font-family: var(--display);
+  font-size: 19px;
+  line-height: 1.3;
+}
+.ws-contact__meta a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(231, 231, 231, 0.25);
+  transition: border-color 0.15s ease;
+}
+.ws-contact__meta a:hover {
+  border-bottom-color: var(--accent);
+}
+
+.ws-contact__form {
+  background: #242427;
+  border: 1px solid #3a3a3e;
+  border-radius: 10px;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.ws-contact__form label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #9a9a9e;
+  font-weight: 600;
+}
+.ws-contact__form input,
+.ws-contact__form textarea {
+  font-family: var(--sans);
+  font-size: 16px; /* ≥16px prevents iOS Safari zoom on focus */
+  color: #f3f3f3;
+  background: #1a1a1c;
+  border: 1px solid #3a3a3e;
+  border-radius: 6px;
+  padding: 12px 14px;
+  letter-spacing: 0;
+  text-transform: none;
+  font-weight: 400;
+  transition: border-color 0.15s ease, background 0.15s ease;
+  resize: vertical;
+  width: 100%;
+  max-width: 100%;
+}
+.ws-contact__form textarea {
+  min-height: 110px;
+}
+.ws-contact__form input:focus,
+.ws-contact__form textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  background: #1f1f22;
+}
+.ws-contact__submit {
+  margin-top: 4px;
+  justify-content: center;
+}
+.ws-contact .ws-btn--solid:hover {
+  background: #fff;
+  color: #1a1a1c;
+  border-color: #fff;
+}
+
+/* ---------- Footer ---------- */
+.ws-footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 22px var(--pad-x);
+  font-size: 12px;
+  color: var(--ink-faint);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border-top: 1px solid var(--line);
+  background: var(--paper);
+}
+
+/* ---------- Floating WhatsApp FAB (phone only) ---------- */
+.ws-fab {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 30;
+  display: none;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 18px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #1a1a1c;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  box-shadow: 0 14px 32px -10px rgba(0, 0, 0, 0.45);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.ws-fab:active {
+  transform: scale(0.97);
+}
+.ws-fab .ws-wa-icon {
+  width: 18px;
+  height: 18px;
+}
+
+/* ---------- Tablet (≤ 900px) ---------- */
+@media (max-width: 900px) {
+  .ws-site {
+    --gutter: 28px;
+  }
+  .ws-hero {
+    padding-top: 100px;
+    padding-bottom: 80px;
+  }
+  .ws-navlinks {
+    gap: 18px;
+  }
+  .ws-navlinks a {
+    font-size: 12px;
+  }
+  .ws-trust {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+  .ws-service,
+  .ws-contact__grid,
+  .ws-why-pillars,
+  .ws-testimonials__list {
+    grid-template-columns: 1fr;
+  }
+  .ws-why,
+  .ws-contact {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+  .ws-testimonials {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+  .ws-testimonials__list {
+    margin-top: 36px;
+    gap: 18px;
+  }
+  .ws-why-pillars {
+    margin-top: 36px;
+  }
+  .ws-contact__form {
+    padding: 24px;
+  }
+  .ws-service__media {
+    min-height: 280px;
+    order: -1;
+  }
+  .ws-service--reverse .ws-service__media {
+    order: -1;
+  }
+  .ws-service__copy {
+    padding: 48px 28px;
+  }
+  .ws-footer {
+    flex-direction: column;
+    gap: 6px;
+    align-items: flex-start;
+  }
+}
+
+/* ---------- Phone (≤ 600px) ---------- */
+@media (max-width: 600px) {
+  .ws-site {
+    --gutter: 20px;
+  }
+  .ws-nav {
+    padding-top: 18px;
+    padding-bottom: 18px;
+  }
+  .ws-navlinks {
+    display: none;
+  }
+
+  .ws-hero {
+    padding-top: 76px;
+    padding-bottom: 64px;
+  }
+  .ws-hero .ws-headline br {
+    display: none;
+  }
+  .ws-lede {
+    margin-top: 22px;
+    font-size: 15px;
+  }
+  .ws-cta-row {
+    flex-direction: column;
+    width: 100%;
+    margin-top: 32px;
+    gap: 10px;
+  }
+  .ws-cta-row .ws-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 14px 18px;
+  }
+
+  .ws-trust {
+    padding-top: 18px;
+    padding-bottom: 18px;
+  }
+  .ws-trust-marks {
+    gap: 18px;
+    flex-wrap: wrap;
+  }
+  .ws-trust-marks span {
+    font-size: 10.5px;
+    letter-spacing: 0.18em;
+  }
+
+  .ws-service__copy {
+    padding: 40px 20px;
+  }
+  .ws-service__copy h2 {
+    font-size: 28px;
+  }
+  .ws-service__copy p {
+    font-size: 14.5px;
+  }
+  .ws-service__copy .ws-btn {
+    width: 100%;
+    justify-content: center;
+  }
+  .ws-service__media {
+    min-height: 220px;
+  }
+
+  .ws-why {
+    padding-top: 64px;
+    padding-bottom: 64px;
+  }
+  .ws-why-pillars {
+    margin-top: 28px;
+    gap: 12px;
+  }
+  .ws-why-pillars li {
+    padding: 18px 20px;
+  }
+  .ws-why-pillars li p {
+    font-size: 17px;
+  }
+
+  .ws-testimonials {
+    padding-top: 64px;
+    padding-bottom: 64px;
+  }
+  .ws-testimonials__list {
+    margin-top: 28px;
+    gap: 14px;
+  }
+  .ws-quote {
+    padding: 30px 22px 22px;
+    gap: 18px;
+  }
+  .ws-quote__mark {
+    font-size: 52px;
+    top: 4px;
+    left: 14px;
+  }
+  .ws-quote__body {
+    font-size: 17px;
+  }
+
+  .ws-contact {
+    padding-top: 64px;
+    padding-bottom: 80px;
+  }
+  .ws-contact__grid {
+    gap: 36px;
+  }
+  .ws-contact__intro {
+    font-size: 14.5px;
+  }
+  .ws-contact__meta {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .ws-contact__meta dd {
+    font-size: 17px;
+  }
+  .ws-contact__form {
+    padding: 20px;
+  }
+
+  .ws-footer {
+    padding-top: 18px;
+    padding-bottom: 22px;
+    font-size: 11px;
+  }
+
+  .ws-fab {
+    display: inline-flex;
+  }
+  .ws-site {
+    padding-bottom: 72px; /* leave room above the FAB */
+  }
+}
+
+/* ---------- Tiny phones (≤ 360px) ---------- */
+@media (max-width: 360px) {
+  .ws-site {
+    --gutter: 16px;
+  }
+  .ws-service__copy {
+    padding: 36px 16px;
+  }
+  .ws-fab {
+    right: 12px;
+    bottom: 12px;
+    padding: 10px 14px;
+    font-size: 12px;
+  }
+}
